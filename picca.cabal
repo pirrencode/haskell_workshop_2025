@@ -1,0 +1,56 @@
+cabal-version:   3.8
+name:            picca
+version:         0.1.0.0
+license:         MIT
+license-file:    LICENSE
+author:          IGORSVOLOHOVS
+maintainer:      user@example.com
+build-type:      Simple
+extra-doc-files: README.md
+
+common warnings
+    ghc-options: -Wall
+
+library
+    import:           warnings
+    exposed-modules:
+        Builder.PiccaBuilder
+        Domain.Picca
+        Domain.PiccaRepository
+        Facade.PiccaFacade
+        Logger.PiccaLogger
+
+    build-depends:
+           base ^>=4.17.2.0,
+           time ^>=1.12.2,
+           yaml ^>=0.11.11.2,
+           aeson ^>=2.2.1.0,
+           text ^>=2.0.2
+
+    hs-source-dirs:   src
+    default-language: GHC2021
+
+executable picca
+    import:           warnings
+    main-is:          Main.hs
+    build-depends:
+        base ^>=4.17.2.0,
+        picca
+
+    hs-source-dirs:   app
+    default-language: GHC2021
+
+test-suite picca-test
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          TestPicca.hs
+    hs-source-dirs:   test
+    build-depends:
+           base ^>=4.17.2.0,
+           picca,
+           HUnit ^>=1.6.2.0,
+           time ^>=1.12.2,
+           yaml ^>=0.11.11.2,
+           aeson ^>=2.2.1.0,
+           text ^>=2.0.2
+    default-language: GHC2021
