@@ -1,0 +1,29 @@
+pizzaType :: String -> String -- function to define the type of a pizza
+pizzaType x = x
+
+pizzaSize :: Int -> Int -- function to define the size of a pizza
+pizzaSize k = k
+
+price :: Int -> Double -- function to define the price of pizza based on k
+price k = 0.5 * fromIntegral k
+
+main :: IO ()
+main = do
+    putStrLn "----------- Menu -----------"
+    putStrLn "- Whatever you want"
+    putStrLn "- Whatever you wish"
+    putStrLn "- Whatever you like"
+    putStrLn "----------------------------"
+    putStrLn "Please enter the type of your pizza: "
+    xStr <- getLine
+    putStrLn "Now enter the size of your pizza (in cm): "
+    kStr <- getLine
+    let k = read kStr :: Int
+
+    if k < 60 
+      then do
+        putStrLn $ "There is your " ++ pizzaType xStr ++ 
+                   " with a size " ++ show (pizzaSize k) ++ " cm!"
+        putStrLn $ "Your total cost: " ++ show (price k) ++ " eur"
+      else do
+        putStrLn "We don't offer this pizza size..."
